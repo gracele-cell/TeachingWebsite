@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的 HTML 遊戲庫</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #0f1222;
+    color: #eaeaea;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header { text-align: center; padding: 48px 20px 24px; }
+  header h1 { font-size: 2rem; letter-spacing: 2px; }
+  header p { color: #8b90ad; margin-top: 8px; font-size: 0.95rem; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+  }
+  .card {
+    display: block;
+    background: #1b1f36;
+    border: 1px solid #2c3157;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: #6c7bff; }
+  .card .emoji { font-size: 2rem; }
+  .card h2 { font-size: 1.1rem; margin-top: 12px; }
+  .card p { color: #8b90ad; font-size: 0.85rem; margin-top: 6px; }
+
+  footer { color: #555c7d; font-size: 0.8rem; padding: 24px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>🎮 我的 HTML 遊戲庫</h1>
+    <p>點選卡片開始遊戲</p>
+  </header>
+
+  <!-- 新增遊戲時，只要在 games 陣列加一筆資料即可 -->
+  <main class="grid" id="gameGrid"></main>
+
+  <footer>Powered by HTML5 · 部署在 GitHub Pages</footer>
+
+<script>
+  const games = [
+    { emoji: "🐍", title: "貪食蛇",   desc: "經典貪食蛇",   url: "./snake/index.html" },
+    { emoji: "🧱", title: "打磚塊",   desc: "彈球打磚塊",   url: "./breakout/index.html" },
+    { emoji: "❌", title: "圈圈叉叉", desc: "井字棋對戰",   url: "./tictactoe/index.html" },
+    // { emoji: "🎲", title: "你的遊戲", desc: "遊戲簡介", url: "./your-game/index.html" },
+  ];
+
+  const grid = document.getElementById("gameGrid");
+  games.forEach(g => {
+    const a = document.createElement("a");
+    a.className = "card";
+    a.href = g.url;
+    a.innerHTML = `<div class="emoji">${g.emoji}</div><h2>${g.title}</h2><p>${g.desc}</p>`;
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>
